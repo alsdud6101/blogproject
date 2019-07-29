@@ -1,0 +1,1 @@
+web: gunicorn MBLOG.wsgi --log-file -
