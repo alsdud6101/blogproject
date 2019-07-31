@@ -4,7 +4,7 @@ from django.core.paginator import Paginator
 from django.utils import timezone
 from .form import BlogPost
 
-def home(request):
+def memory(request):
     blogs = Blog.objects
     #블로그의 모든 글들을 대상으로
     blog_list = Blog.objects.all()
@@ -14,7 +14,10 @@ def home(request):
     page = request.GET.get('page')
     #request된 페이지를 얻어온 뒤 return 해준다
     posts = paginator.get_page(page)
-    return render(request, 'home.html', {'blogs':blogs, 'posts':posts})
+    return render(request, 'memory.html', {'blogs':blogs, 'posts':posts})
+
+def home (request):
+    return render(request, 'home.html')
 
 def detail (request, blog_id):
     details = get_object_or_404(Blog, pk = blog_id)
@@ -51,3 +54,4 @@ def blogpost(request):
     else:
         form = BlogPost()
         return render(request, 'new.html', {'form':form})
+
